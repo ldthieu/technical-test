@@ -1,0 +1,99 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Api test",
+		"_postman_id": "1ee0ff2d-ebe1-7d36-2366-058de15048f1",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get token oau2",
+			"request": {
+				"url": "https://login.salesforce.com/services/oauth2/token",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"description": ""
+						},
+						{
+							"key": "client_id",
+							"value": "3MVG9fe4g9fhX0E6sE3gm0_IsJjJXlYIbp0zDv.OmO6BOUTGFxn9EzNAxT_j3s6jcLGyDH.xRf_FjJP62ZqkZ",
+							"description": ""
+						},
+						{
+							"key": "client_secret",
+							"value": "A676F9A5B4BF3234A43336F8009F7CAD2F9DF3ABE5F8549FEE1621765F738B7F",
+							"description": ""
+						},
+						{
+							"key": "username",
+							"value": "",
+							"description": ""
+						},
+						{
+							"key": "password",
+							"value": "",
+							"description": ""
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get contacts",
+			"request": {
+				"url": "https://skedulo26-dev-ed.my.salesforce.com/services/apexrest/contact",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 00D5g000005K9ev!AR8AQNqtBpdIAFUXIhRZaVput7eHXnDeGZWg4gHQb0azcajwW5gkDQNhv8JqxPBvM9uY8WlNu4wjX2Ed1ayi485YpLTWnrMP",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "update contacts with patch",
+			"request": {
+				"url": "https://skedulo26-dev-ed.my.salesforce.com/services/apexrest/contact",
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 00D5g000005K9ev!AR8AQC7zK.AfQBkUotOLmwckC.hgCdJEsUCB7fE11z_Ro66bzgp1HMf4gjeyZW0CMjzU_08tmhKE5NjdjIPopd6NJgQIhifS",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"attributes\": {\n            \"type\": \"Contact\",\n            \"url\": \"/services/data/v52.0/sobjects/Contact/0035g000007WaSwAAK\"\n        },\n        \"id\": \"0035g000007WaSwAAK\",\n        \"Name\": \"Test 2\",\n        \"lastName\": \"test 11\"\n    },\n    {\n        \"attributes\": {\n            \"type\": \"Contact\",\n            \"url\": \"/services/data/v52.0/sobjects/Contact/0035g000007WaSIAA0\"\n        },\n        \"Id\": \"0035g000007WaSIAA0\",\n        \"Name\": \"test 1\",\n        \"LastName\": \"test 1\",\n        \"Counter__c\": 0\n    },\n    {\n        \"attributes\": {\n            \"type\": \"Contact\",\n            \"url\": \"/services/data/v52.0/sobjects/Contact/0035g000007WaUEAA0\"\n        },\n        \"Id\": \"0035g000007WaUEAA0\",\n        \"Name\": \"Test 3\",\n        \"LastName\": \"Test 3\",\n        \"Counter__c\": 0\n    }\n]"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
