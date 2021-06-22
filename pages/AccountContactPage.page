@@ -1,0 +1,56 @@
+<apex:page controller="AccountContactController">
+    <apex:form >
+        
+        <apex:pageBlock title="Search Accounts and Contacts">
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Search" reRender="table" />
+            </apex:pageBlockButtons>
+            
+            <apex:pageBlockSection >
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Input" for="searchInput"/>
+                    <apex:inputText value="{!searchString}" id="searchInput" />
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockTable value="{!records}" var="r" id="table" >
+                <apex:column headerValue="Record Name" value="{!r.name}"/>
+                <apex:column headerValue="Record Type" value="{!r.recordType}"/>
+                <apex:column headerValue="Counter" value="{!r.counter}"/>
+                <apex:column headerValue="Click to open">
+                    <apex:outputLink value="/{!r.recordId}" target="_blank" >
+                        View
+                    </apex:outputLink>
+                </apex:column>
+                <apex:column headerValue="Click to update counter">
+                    <apex:commandLink value="Increment Counter" onclick="increaseCouter('{!r.recordId}','{!r.recordType}')" reRender="none" >
+                    </apex:commandLink>
+                </apex:column>
+            </apex:pageBlockTable>
+            
+            <apex:outputText value="{!message}" />
+            
+            <apex:actionFunction name="reload" reRender="table" />
+            
+        </apex:pageBlock>
+    </apex:form>
+    <script type="text/javascript">
+    	function increaseCouter(recordId, recordType){   
+            AccountContactController.addCounter(recordId, recordType, function(result, event){
+                if (event.status) {
+                    if(result && result.success === true){
+                        // reload when update success
+                    	reload();
+                    } else {
+                        // show error message
+                    }
+                } else if (event.type === 'exception') {
+                    // show error message
+                } else {
+                    // show error message
+                }
+            });
+        	
+        }
+    </script>
+</apex:page>
