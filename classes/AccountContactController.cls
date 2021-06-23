@@ -16,8 +16,10 @@ public with sharing class AccountContactController {
     }
     
     private List<TableRecord> queryObject(String sObjectName, String searchKey){
-        string queryString = 'Select Id, Name, Counter__c From ' + sObjectName + ' Where Name like \'' + searchKey + '%\'';
+        searchKey = searchKey + '%';
+        string queryString = 'Select Id, Name, Counter__c From ' + sObjectName + ' Where Name like :searchKey';
         List<sObject> sObjectList = Database.query(queryString);
+
         List<TableRecord> recordList = new List<TableRecord>();
         for(sObject sobj : sObjectList){
             TableRecord tr = new TableRecord();
@@ -32,7 +34,8 @@ public with sharing class AccountContactController {
     
     @RemoteAction
     public static Database.SaveResult addCounter(String recordId, String objectName){
-        String query = 'Select id, Counter__c from ' + objectName + ' where Id = \'' + recordId + '\'';
+        recordId = String.isBlank(recordId) ? '' : recordId;
+        String query = 'Select id, Counter__c from ' + objectName + ' where Id = :recordId';
         List<sObject> records = Database.query(query);
         if(records.size() > 0){
             sObject obj = records.get(0);

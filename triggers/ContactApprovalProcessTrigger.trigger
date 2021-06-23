@@ -1,4 +1,4 @@
-trigger ContactApprovalProcessTrigger on Contact (after insert, after update) {
+trigger ContactApprovalProcessTrigger on Contact (after insert) {
 
     List<Contact> cntUpdateList = new List<Contact>();
     Map<Id, Integer> accUpdateMap = new Map<Id, Integer>();
